@@ -29,7 +29,7 @@ titlenames=c("PCI@20%","IFA","Pf")
 lbnames<-NULL
 
 printResult <- function(sk1st, path, method) {
-  out.fname <- sprintf(paste(outfpath,"rank-%s230315.csv",  sep="/"),method)
+  out.fname <- sprintf(paste(outfpath,"rank-%s230316.csv",  sep="/"),method)
   write.table(sk1st,out.fname,row.names=TRUE,col.names=TRUE,sep=",")
 }
 
@@ -66,7 +66,8 @@ for (method in methods) {
       rdata <- as.data.frame(rdata)
       rdata <- -rdata
       sk <- sk_esd(rdata)#进行一个数据集的sk检???
-      sk1st <- rbind(sk1st, sk$groups[mnames])  
+      temp<- max(sk$groups[mnames])+1-sk$groups[mnames]
+      sk1st <- rbind(sk1st, temp)  
     }
     sk1st <- as.data.frame(sk1st)
     sk <- sk_esd(sk1st)#sk检验结果作为输入进行sk检??? 

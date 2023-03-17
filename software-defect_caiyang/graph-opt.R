@@ -65,7 +65,7 @@ plot_hist_single <- function(validation=validation, criteria=criteria,method=met
   #lwd
   axis(2, mgp=c(0.5, 0.5, 0), las=0, tck=-0.02, cex.axis=0.8, lwd=1.0)
   box(bty="L", lwd=1.5)
-  abline(h=0,lty=3,col = c("green"))
+  abline(h=0,lty=3,col = c("red"))
   temp<- cnames[1]
   text(x=seq(12), y=par("usr")[3], srt=20, adj=c(1, 1.2), labels=gmnames, xpd=NA,cex=0.7)
   title(main = sprintf("%s",titlename),cex.main =0.6,font=1,line=0.3)
@@ -74,8 +74,8 @@ plot_hist_single <- function(validation=validation, criteria=criteria,method=met
 }
 
 
-infpath <- "D:/software-defect_caiyang/output-opt"  ## using LOC
-outfpath <- "D:/software-defect_caiyang/results-opt"
+infpath <- "D:/Git/Sampling/software-defect_caiyang/output-opt"  ## using LOC
+outfpath <- "D:/Git/Sampling/software-defect_caiyang/results-opt"
 
 
 titlenames=c("LR","NB","RF")
