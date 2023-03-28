@@ -113,15 +113,6 @@ for j in range(10):
         return Popt, Erecall, Eprecision, Efmeasure, PMI, IFA, recall, precision,  F1, Pf, AUC, MCC
 
 
-    #逻辑回归
-    cv = RepeatedKFold(n_splits=5, n_repeats=3, random_state=1)
-    def lr_predict(trn_X, trn_y, tst_X, tst_y, effort, class_weight=None):
-        modelLR = LogisticRegression(max_iter=2000)
-        modelLR.fit(trn_X, trn_y)
-        tst_pred = modelLR.predict_proba(tst_X)
-        Popt, Erecall, Eprecision, Efmeasure, PMI, IFA, recall, precision,  F1, Pf, AUC, MCC = evaluate_all(tst_pred[:, 1], effort,tst_y)
-        return Popt, Erecall, Eprecision, Efmeasure, PMI, IFA, recall, precision,  F1, Pf, AUC, MCC
-
     #随机森林
     def rf_predict(trn_X, trn_y, tst_X, tst_y, effort, class_weight=None):
         sc = StandardScaler()
@@ -133,14 +124,6 @@ for j in range(10):
         clf.fit(trn_X, trn_y)
         tst_pred = clf.predict(tst_X)
         Popt, Erecall, Eprecision, Efmeasure, PMI, IFA, recall, precision,  F1, Pf, AUC, MCC = evaluate_all(tst_pred, effort, tst_y)
-        return Popt, Erecall, Eprecision, Efmeasure, PMI, IFA, recall, precision,  F1, Pf, AUC, MCC
-
-    # 高斯贝叶斯
-    def nb_predict(trn_X, trn_y, tst_X, tst_y, effort, class_weight=None):
-        clf = GaussianNB()
-        clf.fit(trn_X, trn_y)
-        tst_pred = clf.predict(tst_X)
-        Popt, Erecall, Eprecision, Efmeasure, PMI, IFA, recall, precision,  F1, Pf, AUC, MCC= evaluate_all(tst_pred, effort, tst_y)
         return Popt, Erecall, Eprecision, Efmeasure, PMI, IFA, recall, precision,  F1, Pf, AUC, MCC
 
     none = np.zeros(shape=(50, 20))

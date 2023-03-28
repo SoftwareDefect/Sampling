@@ -24,7 +24,7 @@ from ednn import edited_nn
 
 datasets=["nova","broadleaf","spring-integration","neutron","brackets","tomcat","fabric","jgroups","camel"]
 method = "LR"
-for j in range(1):
+for j in range(10):
     dataset=datasets[j]
 
     with open("./datasets/"+dataset+".arff", encoding="utf-8") as f:
@@ -122,26 +122,6 @@ for j in range(1):
         Popt, Erecall, Eprecision, Efmeasure, PMI, IFA, recall, precision,  F1, Pf, AUC, MCC = evaluate_all(tst_pred[:, 1], effort,tst_y)
         return Popt, Erecall, Eprecision, Efmeasure, PMI, IFA, recall, precision,  F1, Pf, AUC, MCC
 
-    #随机森林
-    def rf_predict(trn_X, trn_y, tst_X, tst_y, effort, class_weight=None):
-        sc = StandardScaler()
-        trn_X = sc.fit_transform(trn_X)
-        tst_X = sc.transform(tst_X)
-        # 训练随机森林解决回归问题
-        clf = RandomForestClassifier(n_estimators=200, random_state=1)
-        #n_estimators表示数的个数，数值越大越好，但是会占用内存多
-        clf.fit(trn_X, trn_y)
-        tst_pred = clf.predict(tst_X)
-        Popt, Erecall, Eprecision, Efmeasure, PMI, IFA, recall, precision,  F1, Pf, AUC, MCC = evaluate_all(tst_pred, effort, tst_y)
-        return Popt, Erecall, Eprecision, Efmeasure, PMI, IFA, recall, precision,  F1, Pf, AUC, MCC
-
-    # 高斯贝叶斯
-    def nb_predict(trn_X, trn_y, tst_X, tst_y, effort, class_weight=None):
-        clf = GaussianNB()
-        clf.fit(trn_X, trn_y)
-        tst_pred = clf.predict(tst_X)
-        Popt, Erecall, Eprecision, Efmeasure, PMI, IFA, recall, precision,  F1, Pf, AUC, MCC= evaluate_all(tst_pred, effort, tst_y)
-        return Popt, Erecall, Eprecision, Efmeasure, PMI, IFA, recall, precision,  F1, Pf, AUC, MCC
 
     none = np.zeros(shape=(50, 12))
     rum = np.zeros(shape=(50, 12))
