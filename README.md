@@ -3,46 +3,35 @@
 =====================================================
 = Environment Setup
 =====================================================
--> Download and Pycharm
+-> Download Pycharm
 ->python 3.10.4
 
 
 
 =====================================================
-= Main script
+= Main
 =====================================================
-- exeMain.r
+- mainLR.py
 [Overview]
-It is the script of the experiment for the cross-validation, time-wise-cross-validation, and across project prediction
+It is a comparative experiment of sampling methods using Logistic Regression as a classifier.
+The sampling method includes Random Under-Sampling, NearMiss, ENN, TomekLink, OSS, Random Over-Sampling, SMOTE, BSMOTE, SMOTE+Tomek Link, SMOTE+ENN 
+- mainNB.py
+[Overview]
+It is a comparative experiment of sampling methods using Naive Bayes as a classifier.
+The sampling method includes Random Under-Sampling, NearMiss, ENN, TomekLink, OSS, Random Over-Sampling, SMOTE, BSMOTE, SMOTE+Tomek Link, SMOTE+ENN 
+- mainRF.py
+[Overview]
+It is a comparative experiment of sampling methods using Random Forest as a classifier.
+The sampling method includes Random Under-Sampling, NearMiss, ENN, TomekLink, OSS, Random Over-Sampling, SMOTE, BSMOTE, SMOTE+Tomek Link, SMOTE+ENN 
 
 [HowToRun]
-In Terminal
-> cd JIT_HOME/jit/script_r
-> Python
-> source("exeMain.r")
+> mainLR.py
+> mainNB.py
+> mainRF.py
 
 [Output]
-../output/cross-validation/... are the results for cross-validation
-../output/cross-validation-timewise/... are the results for time-wise-cross-validation
-../output/cross-project/... are the results for across-project prediction
+../output/... are the measures of 50 times of each sampling technique for data set
+../results-median/... are the median of the measures
 
 
-- ReportResults.r
-[Overview]
-It is the script for presentations (figures and tables)
 
-[HowToRun]
-In Terminal
-> cd JIT_HOME/jit/script_r
-> R
-> source("ReportResult.r")
-> q()
-
-[Output]
-all tables and figures will stored in the "results" folder
-
-=====================================================
-= Utility
-=====================================================
-- utils.r
-It is the utility script for computing prediction performance
