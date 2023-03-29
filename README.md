@@ -1,27 +1,25 @@
 # Sampling
 
-=====================================================
-= Environment Setup
-=====================================================
+
+Environment Setup：
+
 -> Download Pycharm
-->python 3.10.4
+-> python 3.10.4
+
+Main：
 
 
-
-=====================================================
-= Main
-=====================================================
-- mainLR.py
+-> mainLR.py
 [Overview]
-It is a comparative experiment of sampling methods using Logistic Regression as a classifier.
+It is a comparative experiment of sampling techniques using Logistic Regression as a classifier.
 The sampling method includes Random Under-Sampling, NearMiss, ENN, TomekLink, OSS, Random Over-Sampling, SMOTE, BSMOTE, SMOTE+Tomek Link, SMOTE+ENN 
-- mainNB.py
+-> mainNB.py
 [Overview]
-It is a comparative experiment of sampling methods using Naive Bayes as a classifier.
+It is a comparative experiment of sampling techniques using Naive Bayes as a classifier.
 The sampling method includes Random Under-Sampling, NearMiss, ENN, TomekLink, OSS, Random Over-Sampling, SMOTE, BSMOTE, SMOTE+Tomek Link, SMOTE+ENN 
-- mainRF.py
+-> mainRF.py
 [Overview]
-It is a comparative experiment of sampling methods using Random Forest as a classifier.
+It is a comparative experiment of sampling techniques using Random Forest as a classifier.
 The sampling method includes Random Under-Sampling, NearMiss, ENN, TomekLink, OSS, Random Over-Sampling, SMOTE, BSMOTE, SMOTE+Tomek Link, SMOTE+ENN 
 
 [HowToRun]
