@@ -137,8 +137,6 @@ for j in range(10):
     bsmote = np.zeros(shape=(50, 20))
     csmote = np.zeros(shape=(50, 20))
     cenn = np.zeros(shape=(50, 20))
-    eensemble = np.zeros(shape=(50, 20))
-    bc= np.zeros(shape=(50, 20))
     for i in range(50):
         trn_X, tst_X, trn_y, tst_y, effort = divideddata(X,y)
         none[i, :] = rf_predict(trn_X, trn_y, tst_X, tst_y, effort, class_weight=None)
