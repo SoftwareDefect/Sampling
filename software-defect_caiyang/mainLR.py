@@ -26,7 +26,6 @@ datasets=["nova","broadleaf","spring-integration","neutron","brackets","tomcat",
 method = "LR"
 for j in range(10):
     dataset=datasets[j]
-
     with open("./datasets/"+dataset+".arff", encoding="utf-8") as f:
         header = []
         for line in f:
@@ -227,5 +226,3 @@ for j in range(10):
     cenn.to_csv(cennoutpath, index=True, header=True)
 
     print("running is okay~")
-
-
