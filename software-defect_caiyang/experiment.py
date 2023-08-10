@@ -111,7 +111,7 @@ def save_results_to_csv(results, dataset,timeperiod,model_para):
         # Reset the index
         df = df.reset_index(drop=True)
         df.columns = ['Popt', 'Erecall', 'Eprecision', 'Efmeasure', 'PMI', 'IFA', 'recall', 'precision', 'F1', 'Pf', 'AUC', 'MCC']
-        outpath = f'./output-{timeperiod}months-{model_para}/{dataset}-{key}.csv'
+        outpath = f'./output/output-{timeperiod}months-{model_para}/{dataset}-{key}.csv'
 
         df.to_csv(outpath, index=True, header=True)
 

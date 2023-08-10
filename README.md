@@ -48,4 +48,3 @@ sklearn        0.  0. post1
   $cd your code path
   $python main.py
   ```
-  

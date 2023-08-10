@@ -123,7 +123,7 @@ def save_results_to_csv(results, dataset,metric):
     # Reset the index
     df = df.reset_index(drop=True)
     df.columns = ['Popt', 'Erecall', 'Eprecision', 'Efmeasure', 'PMI', 'IFA', 'recall', 'precision', 'F1', 'Pf', 'AUC', 'MCC']
-    outpath = f'./output-metrics/{metric}-{dataset}.csv'
+    outpath = f'./output/output-metrics/{metric}-{dataset}.csv'
     df.to_csv(outpath, index=True, header=True)
 
 
