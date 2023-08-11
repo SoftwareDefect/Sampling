@@ -12,7 +12,7 @@ if __name__ == "__main__":
     # using default LApredict classifier, timeperiod=2months, gap=2months
     timeperiod = 2
     model_para = 'default'
-    experiment.main(DATASETS, timeperiod,model_para)
+    #experiment.main(DATASETS, timeperiod,model_para)
 
     # using default LApredict classifier, timeperiod=6months, gap=6months(Comparative experiments on time period)
     timeperiod = 6

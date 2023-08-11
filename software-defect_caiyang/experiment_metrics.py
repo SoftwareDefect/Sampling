@@ -83,7 +83,22 @@ def datapreprocessing(trn,tst,metric):
     effort = np.ravel(effort)
     return trn_X, trn_y, tst_X, tst_y, effort
 
-
+def unimon_data(data):
+    # replace NaN and infinite values with 0
+    data = data.replace([np.nan, np.inf, -np.inf], 0)
+    # bool to 01
+    data = data.fillna(0)
+    # change format
+    data["commitdate"] = pd.to_datetime(data["commitTime"]).dt.strftime('%Y-%m')
+    data = data.sort_values("commitdate")
+    # ordered data by commitTime
+    unimon = data['commitdate'].unique()
+    unimon.sort()
+    totalFolds = len(unimon)
+    sub = [None] * totalFolds
+    for fold in range(totalFolds):
+        sub[fold] = data[data['commitdate'] == unimon[fold]]
+    return totalFolds, sub
 # traditional evaluate
 def evaluate(y_true, y_pred):
     # pre<0.5  =0；  pre>=0.5  =1；
@@ -144,23 +159,11 @@ def main(DATASETS):
             fname = dataset + ".csv"
             file = "D:/Git/Sampling/software-defect_caiyang/datasets/" + fname
             data = pd.read_csv(file)
-            # replace NaN and infinite values with 0
-            data = data.replace([np.nan, np.inf, -np.inf], 0)
-            # bool to 01
-            data = data.fillna(0)
-            # change format
-            data["commitdate"] = pd.to_datetime(data["commitTime"]).dt.strftime('%Y-%m')
-            data = data.sort_values("commitdate")
-            # ordered data by commitTime
-            unimon = data['commitdate'].unique()
-            unimon.sort()
-            totalFolds = len(unimon)
-            sub = [None] * totalFolds
             # timewise
             gap = 2
+            #divide the data of same month into same fold
+            totalFolds, sub = unimon_data(data)
             results = np.zeros(shape=(0, 12))
-            for fold in range(totalFolds):
-                sub[fold] = data[data['commitdate'] == unimon[fold]]
             for fold in range(totalFolds):
                 if (fold + 6 > totalFolds):
                     continue

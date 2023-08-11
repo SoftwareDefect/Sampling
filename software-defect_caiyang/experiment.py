@@ -115,6 +115,22 @@ def save_results_to_csv(results, dataset,timeperiod,model_para):
 
         df.to_csv(outpath, index=True, header=True)
 
+def unimon_data(data):
+    # replace NaN and infinite values with 0
+    data = data.replace([np.nan, np.inf, -np.inf], 0)
+    # bool to 01
+    data = data.fillna(0)
+    # change format
+    data["commitdate"] = pd.to_datetime(data["commitTime"]).dt.strftime('%Y-%m')
+    data = data.sort_values("commitdate")
+    # ordered data by commitTime
+    unimon = data['commitdate'].unique()
+    unimon.sort()
+    totalFolds = len(unimon)
+    sub = [None] * totalFolds
+    for fold in range(totalFolds):
+        sub[fold] = data[data['commitdate'] == unimon[fold]]
+    return totalFolds,sub
 
 #if __name__ == '__main__':
 def main(DATASETS,timeperiod,model_para):
@@ -138,22 +154,11 @@ def main(DATASETS,timeperiod,model_para):
         fname = dataset + ".csv"
         file = "D:/Git/Sampling/software-defect_caiyang/datasets/" + fname
         data = pd.read_csv(file)
-        # replace NaN and infinite values with 0
-        data = data.replace([np.nan, np.inf, -np.inf], 0)
-        # bool to 01
-        data = data.fillna(0)
-        # change format
-        data["commitdate"] = pd.to_datetime(data["commitTime"]).dt.strftime('%Y-%m')
-        data = data.sort_values("commitdate")
-        # ordered data by commitTime
-        unimon = data['commitdate'].unique()
-        unimon.sort()
-        totalFolds = len(unimon)
-        sub = [None] * totalFolds
+        #timewise
         gap = timeperiod
+        # divide the data of same month into same fold
+        totalFolds, sub = unimon_data(data)
         results = {key: np.zeros(shape=(0, 12)) for key in sampling_methods.keys()}
-        for fold in range(totalFolds):
-            sub[fold] = data[data['commitdate'] == unimon[fold]]
         for fold in range(totalFolds):
             if (fold + gap * 3 > totalFolds):
                 continue
