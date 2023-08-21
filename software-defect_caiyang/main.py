@@ -1,4 +1,5 @@
 import experiment
+import experiment_classifiers
 import experiment_metrics
 
 DATASETS = ["spring-integration", "broadleaf", "npm", "nova", "neutron", "brackets", "tomcat", "fabric", "jgroups","camel"]
@@ -23,4 +24,12 @@ if __name__ == "__main__":
     timeperiod = 2
     model_para = 'optimized'
     experiment.main(DATASETS,timeperiod,model_para )
+
+    # using default NB classifier, timeperiod=2months(Comparative experiments on NB classifier)
+    model = 'NB'
+    experiment_classifiers.main(DATASETS,model)
+
+    # using default RF classifier, timeperiod=2months(Comparative experiments on RF classifier )
+    model = 'RF'
+    experiment_classifiers.main(DATASETS, model)
 
