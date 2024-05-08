@@ -2,7 +2,7 @@ import experiment
 import experiment_classifiers
 import experiment_metrics
 
-DATASETS = ["spring-integration", "broadleaf", "npm", "nova", "neutron", "brackets", "tomcat", "fabric", "jgroups","camel"]
+DATASETS = ["spring-integration", "broadleaf", "npm", "nova", "neutron", "brackets", "tomcat", "fabric", "jgroups","camel",'postgres','mozilla','platform','jdt','columba','bugzilla']
 
 
 if __name__ == "__main__":
